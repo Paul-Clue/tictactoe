@@ -9,6 +9,7 @@ player_2 = gets.chomp
 puts "\n"
 puts "Hello #{player_1} and #{player_2}!\n"
 puts "In order to win the game,\na player must place three of their marks in a\nhorizontal, vertical, or diagonal row.\n"
+puts"\n"
 puts "#{player_1} please choose your mark by entering \"x\" or \"o\" below.\n"
 player_1_mark = gets.chomp
 
@@ -18,11 +19,24 @@ player_2_mark = if player_1_mark == 'x'
                   'x'
                 end
 
+puts"\n"
+puts "#{player_1} your mark is -- #{player_1_mark}."
+puts "And #{player_2} your mark is -- #{player_2_mark}."
+puts"\n"
+puts"\n"
 lines.each do |line|
   puts "#{line} "
 end
+puts"\n"
 puts "#{player_1} your turn. Enter the number of where you would like to place your mark. "
 mark = gets.chomp
 
 puts "#{player_2} your turn. Enter the number of where you would like to place your mark. "
 mark = gets.chomp
+
+puts "\n"
+
+puts "#{player_1} wins the match!"
+
+
+puts "#{player_2} wins the match!"
