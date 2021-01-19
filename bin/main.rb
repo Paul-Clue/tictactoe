@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# rubocop:disable Metrics/BlockNesting
 
 require_relative '../lib/interface'
 
@@ -85,3 +86,5 @@ while game_on
     response == 'n' ? game_on = false : game_on == true
   end
 end
+
+# rubocop:enable Metrics/BlockNesting

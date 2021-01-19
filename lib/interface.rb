@@ -1,4 +1,6 @@
 # rubocop:disable Metrics/CyclomaticComplexity
+# rubocop:disable Style/ClassVars
+# rubocop:disable Metrics/MethodLength
 module Validation
   # def valid(num)
   #   @@invalid_num << num
@@ -63,3 +65,7 @@ class Players
     end
   end
 end
+
+# rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Style/ClassVars
+# rubocop:enable Metrics/MethodLength
