@@ -45,17 +45,13 @@ class Players
     end
   end
 
-  def fist_board
+  def first_board
     @@lines.each do |line|
       line.each do |char|
         print "| #{char} |"
       end
       puts
     end
-  end
-
-  def updated_board
-    @@lines
   end
 
   def valid(num)
