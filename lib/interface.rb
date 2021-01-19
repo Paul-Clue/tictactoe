@@ -74,8 +74,8 @@ class Board < Player
     @@lines.each_with_index do |v, s|
       v.each_with_index do |i, t|
         if i == mark
-          @@lines[s][t] = player_two_mark
-          @@char_array[char_index] = player_two_mark
+          @@lines[s][t] = player_mark
+          @@char_array[char_index] = player_mark
         end
         char_index += 1
       end
@@ -94,7 +94,7 @@ class Board < Player
   end
 end
 
-board = Players.new
+# board = Players.new
 
 # p board.valid()
 # rubocop:enable Metrics/CyclomaticComplexity
