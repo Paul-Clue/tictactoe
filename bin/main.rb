@@ -32,12 +32,7 @@ while game_on
   puts "\n"
   puts "\n"
   board = Players.new
-  board.updated_board.each do |line|
-    line.each do |char|
-      print "| #{char} |"
-    end
-    puts
-  end
+  board.fist_board
   repeat_loop = true
   while repeat_loop
     puts "\n"
@@ -47,7 +42,7 @@ while game_on
 
     player_one_num = Players.new
     player_one_num.player_move(played_num, player_one_mark)
-
+    # I winner will be checked here
     check = player_one_num.valid(played_num)
     if check == true
       puts 'number taken, please enter a valid number'
@@ -55,12 +50,13 @@ while game_on
     else
       repeat_loop = false
       puts "#{player_two} your turn. Enter the number of where you would like to place your mark. "
+      board.fist_board
       played_num = gets.chomp.to_i
       board.player_move(played_num, player_two_mark)
 
       player_two_num = Players.new
       player_two_num.player_move(played_num, player_two_mark)
-
+      # I winner will be checked here as well
       check = player_two_num.valid(played_num)
       if check == true
         puts 'number taken, please enter a valid number'
