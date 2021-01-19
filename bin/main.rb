@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# rubocop:disable Metrics/BlockNesting
 
 require_relative '../lib/interface'
 
@@ -278,5 +277,3 @@ end
 lines.each do |line|
   puts "#{line} "
 end
-
-# rubocop:enable Metrics/BlockNesting
