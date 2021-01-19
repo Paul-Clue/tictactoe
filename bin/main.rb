@@ -4,7 +4,7 @@ require_relative '../lib/interface'
 
 # winning_combo = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
 
-puts "Welcome to Tic-Tac-Toe.\nPlayer one please enter Your name."
+puts "~~~Welcome to Tic-Tac-Toe.~~~\nPlayer one please enter Your name."
 player_one = gets.chomp
 puts 'Now player two please enter your name.'
 player_two = gets.chomp
@@ -32,7 +32,7 @@ while game_on
   puts "\n"
   puts "\n"
   board = Players.new
-  board.fist_board
+  board.first_board
   repeat_loop = true
   while repeat_loop
     puts "\n"
@@ -50,7 +50,7 @@ while game_on
     else
       repeat_loop = false
       puts "#{player_two} your turn. Enter the number of where you would like to place your mark. "
-      board.fist_board
+      board.first_board
       played_num = gets.chomp.to_i
       board.player_move(played_num, player_two_mark)
 
@@ -71,12 +71,16 @@ while game_on
   if is_winner == player_one
     #     puts "\n"
     puts "*********#{player_one}wins the match!******"
+    board.first_board
   elsif puts "\n"
     puts "********#{player_two} wins the match!******"
+    board.first_board
   else
     #     puts "\n"
-    puts 'It is a draw ! do you wan play again?'
-    puts 'y / n'
+    puts 'It is a draw!'
+    board.first_board
+    puts 'do you guys wanna play again?'
+    puts 'type "y" for "yes" and  "n" for no'
     response = gets.chomp
     unless response game_on = false
     end
