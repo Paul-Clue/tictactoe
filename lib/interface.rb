@@ -1,6 +1,4 @@
 # rubocop:disable Metrics/CyclomaticComplexity
-# rubocop:disable Style/ClassVars
-# rubocop:disable Metrics/MethodLength
 module Validation
   # def valid(num)
   #   @@invalid_num << num
@@ -8,10 +6,32 @@ module Validation
   # end
 end
 
-class Players
-  # include Validation
-  @@lines = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-  @@invalid_num = []
+class Player
+  attr_reader :p_mark
+  attr_accessor :p_move
+
+  def initialize(p_mark, p_move=0)
+    @p_mark = p_mark
+    @p_move = p_move
+  end  
+end  
+
+
+
+
+class Board < Player
+  include Validation
+  # @@lines = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+  # @@invalid_num = [1, 2, 3]
+  @@lines = [%w[1 2 3], %w[4 5 6], %w[7 8 9]]
+  @@char_array = %w[1 2 3 4 5 6 7 8 9]
+  @@invalid_num = [1, 2, 3]
+
+  attr_reader :board_array
+
+  def initialize(board_array)
+    @board_array = board_array
+  end
 
   def player_move(num, mark)
     case num
@@ -47,13 +67,8 @@ class Players
     end
   end
 
-  def first_board
-    @@lines.each do |line|
-      line.each do |char|
-        print "| #{char} |"
-      end
-      puts
-    end
+  def updated_board
+    @@lines
   end
 
   def valid(num)
@@ -66,6 +81,7 @@ class Players
   end
 end
 
+board = Players.new
+
+# p board.valid()
 # rubocop:enable Metrics/CyclomaticComplexity
-# rubocop:enable Style/ClassVars
-# rubocop:enable Metrics/MethodLength
