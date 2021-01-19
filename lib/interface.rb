@@ -10,7 +10,7 @@ class Player
   attr_reader :p_mark
   attr_accessor :p_move
 
-  def initialize(p_mark, p_move=0)
+  def initialize(p_mark)
     @p_mark = p_mark
     @p_move = p_move
   end  
@@ -67,9 +67,22 @@ class Board < Player
     end
   end
 
-  def updated_board
-    @@lines
+  def updated_board(mk, pmk)
+    char_index = 0
+    mark = mk
+    player_mark
+    @@lines.each_with_index do |v, s|
+      v.each_with_index do |i, t|
+        if i == mark
+          @@lines[s][t] = player_two_mark
+          @@char_array[char_index] = player_two_mark
+        end
+        char_index += 1
+      end
+    end
   end
+
+
 
   def valid(num)
     if @@invalid_num.any?(num)
