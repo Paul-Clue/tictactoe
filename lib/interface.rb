@@ -1,45 +1,65 @@
+# rubocop:disable Metrics/CyclomaticComplexity
 module Validation
-  $invalid_move = []
-  def valid?(num)
-    invalid_move << num
-    invalid_move
-  end
+  # def valid(num)
+  #   @@invalid_num << num
+  #   @@invalid_num
+  # end
 end
 
 class Players
-  include Validations
+  include Validation
   @@lines = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+  @@invalid_num = [1, 2, 3]
+
   def player_move(num, mark)
     case num
     when 1
-       @@lines[0][0] = mark
-       break
+      @@lines[0][0] = mark
+      @@invalid_num << num
     when 2
-       @@lines[0][1] = mark
-       break
+      @@lines[0][1] = mark
+      @@invalid_num << num
     when 3
-       @@lines[0][2] = mark
-       break
+      @@lines[0][2] = mark
+      @@invalid_num << num
     when 4
-       @@lines[1][0] = mark
-       break
+      @@lines[1][0] = mark
+      @@invalid_num << num
     when 5
-       @@lines[1][1] = mark
-       break
+      @@lines[1][1] = mark
+      @@invalid_num << num
     when 6
       @@lines[1][2] = mark
-      break
+      @@invalid_num << num
     when 7
-       @@lines[2][0] = mark
-       break
+      @@lines[2][0] = mark
+      @@invalid_num << num
     when 8
-       @@lines[2][1] = mark
-       break
+      @@lines[2][1] = mark
+      @@invalid_num << num
     when 9
-       @@lines[2][2] = mark
-       break
+      @@lines[2][2] = mark
+      @@invalid_num << num
     else
-    puts "you entered an invalid number please try again"
+      puts 'you entered an invalid number please try again'
+    end
   end
 
+  def updated_board
+    @@lines
+  end
+
+  def valid(num)
+    if @@invalid_num.any?(num)
+      true
+    else
+      @@invalid_num << num
+      @@invalid_num
+    end
+  end
 end
+
+board = Players.new
+
+# p board.valid()
+# rubocop:enable Metrics/CyclomaticComplexity
