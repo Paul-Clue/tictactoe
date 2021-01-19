@@ -63,5 +63,3 @@ class Players
     end
   end
 end
-
-board = Players.new

@@ -82,7 +82,6 @@ while game_on
     puts 'do you guys wanna play again?'
     puts 'type "y" for "yes" and  "n" for no'
     response = gets.chomp
-    unless response game_on = false
-    end
+    response == 'n' ? game_on = false : game_on == true
   end
 end
