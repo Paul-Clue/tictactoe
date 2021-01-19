@@ -7,9 +7,9 @@ module Validation
 end
 
 class Players
-  include Validation
+  # include Validation
   @@lines = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-  @@invalid_num = [1, 2, 3]
+  @@invalid_num = []
 
   def player_move(num, mark)
     case num
@@ -45,6 +45,15 @@ class Players
     end
   end
 
+  def fist_board
+    @@lines.each do |line|
+      line.each do |char|
+        print "| #{char} |"
+      end
+      puts
+    end
+  end
+
   def updated_board
     @@lines
   end
@@ -60,6 +69,3 @@ class Players
 end
 
 board = Players.new
-
-# p board.valid()
-# rubocop:enable Metrics/CyclomaticComplexity
