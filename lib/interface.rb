@@ -1,18 +1,15 @@
 # rubocop:disable Metrics/CyclomaticComplexity
-module Validation
-  # def valid(num)
-  #   @@invalid_num << num
-  #   @@invalid_num
-  # end
-end
+
 
 class Player
-  attr_reader :p_mark
-  attr_accessor :p_move
+  attr_accessor :mark
+  attr_accessor :move
+  attr_accessor :name
 
-  def initialize(p_mark)
-    @p_mark = p_mark
-    @p_move = p_move
+  def initialize
+    @mark = ''
+    @move = ''
+    @name = ''
   end  
 end  
 
@@ -20,57 +17,14 @@ end
 
 
 class Board < Player
-  include Validation
-  # @@lines = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-  # @@invalid_num = [1, 2, 3]
   @@lines = [%w[1 2 3], %w[4 5 6], %w[7 8 9]]
   @@char_array = %w[1 2 3 4 5 6 7 8 9]
   @@invalid_num = [1, 2, 3]
 
-  attr_reader :board_array
-
-  def initialize(board_array)
-    @board_array = board_array
-  end
-
-  def player_move(num, mark)
-    case num
-    when 1
-      @@lines[0][0] = mark
-      @@invalid_num << num
-    when 2
-      @@lines[0][1] = mark
-      @@invalid_num << num
-    when 3
-      @@lines[0][2] = mark
-      @@invalid_num << num
-    when 4
-      @@lines[1][0] = mark
-      @@invalid_num << num
-    when 5
-      @@lines[1][1] = mark
-      @@invalid_num << num
-    when 6
-      @@lines[1][2] = mark
-      @@invalid_num << num
-    when 7
-      @@lines[2][0] = mark
-      @@invalid_num << num
-    when 8
-      @@lines[2][1] = mark
-      @@invalid_num << num
-    when 9
-      @@lines[2][2] = mark
-      @@invalid_num << num
-    else
-      puts 'you entered an invalid number please try again'
-    end
-  end
-
   def updated_board(mk, pmk)
     char_index = 0
     mark = mk
-    player_mark
+    player_mark = pmk
     @@lines.each_with_index do |v, s|
       v.each_with_index do |i, t|
         if i == mark
@@ -81,6 +35,187 @@ class Board < Player
       end
     end
   end
+
+  def p_one_loop(mk, o_w, p_one)
+    mark = mk
+    o_wins = o_w
+    player_one = p_one
+    until @@char_array.include? mark
+      break unless o_wins == false
+  
+      puts 'You can only select an integer, and that integer must be on the game board.'
+      puts "\n"
+      puts "#{player_one} your turn. Enter the number of where you would like to place your mark. "
+      mark = gets.chomp
+      next unless @@char_array.include? mark
+    end
+    mark
+  end
+
+  def update_array
+    @@lines.each do |line|
+      line.each do |c|
+      print "|_#{c}_| "
+      end
+      puts ""
+    end
+  end
+  
+  def score_test_x
+    game_on = true
+    x_wins = false
+    score = 0
+    @@lines.each do |v|
+      score += 1 if v == %w[x x x]
+      next unless score == 1
+
+      game_on = false
+      x_wins = true
+      break
+    end
+
+    puts '------------------------'
+    puts '------------------------'
+    # Columns
+    score = 0
+    @@lines.each do |v|
+      break if x_wins
+
+      1.step(1) do |s|
+        score += 1 if v[s - 1] == 'x'
+      end
+      next unless score == 3
+
+      game_on = false
+      x_wins = true
+      break
+    end
+
+    score = 0
+    @@lines.each do |v|
+      break if x_wins
+
+      1.step(1) do |s|
+        score += 1 if v[s] == 'x'
+      end
+      next unless score == 3
+
+      game_on = false
+      x_wins = true
+      break
+    end
+
+    score = 0
+    @@lines.each do |v|
+      break if x_wins
+
+      1.step(1) do |s|
+        score += 1 if v[s + 1] == 'x'
+      end
+      next unless score == 3
+
+      game_on = false
+      x_wins = true
+      break
+    end
+
+    score = 0
+    index = 0
+    @@lines.each do |v|
+      break if x_wins
+
+      1.step(1) do |s|
+        s += index
+        score += 1 if v[s - 1] == 'x'
+      end
+      index += 1
+      next unless score == 3
+
+      game_on = false
+      x_wins = true
+      break
+    end
+    game_on
+  end
+
+  def score_test_o
+    game_on = true
+    o_wins = false
+    score = 0
+
+    @@lines.each do |v|
+      score += 1 if v == %w[o o o]
+      next unless score == 1
+
+      game_on = false
+      o_wins = true
+      break
+    end
+
+    puts '------------------------'
+    puts '------------------------'
+    # Columns
+    score = 0
+    @@lines.each do |v|
+      break if o_wins
+
+      1.step(1) do |s|
+        score += 1 if v[s - 1] == 'o'
+      end
+      next unless score == 3
+
+      game_on = false
+      o_wins = true
+      break
+    end
+
+    score = 0
+   @@lines.each do |v|
+      break if o_wins
+
+      1.step(1) do |s|
+        score += 1 if v[s] == 'o'
+      end
+      next unless score == 3
+
+      game_on = false
+      o_wins = true
+      break
+    end
+
+    score = 0
+    @@lines.each do |v|
+      break if o_wins
+
+      1.step(1) do |s|
+        score += 1 if v[s + 1] == 'o'
+      end
+      next unless score == 3
+
+      game_on = false
+      o_wins = true
+      break
+    end
+
+    score = 0
+    index = 0
+    @@lines.each do |v|
+      break if o_wins
+
+      1.step(1) do |s|
+        s += index
+        score += 1 if v[s - 1] == 'o'
+      end
+      index += 1
+      next unless score == 3
+
+      game_on = false
+      o_wins = true
+      break
+    end
+    game_on
+  end 
+
 
 
 
@@ -94,7 +229,4 @@ class Board < Player
   end
 end
 
-# board = Players.new
-
-# p board.valid()
 # rubocop:enable Metrics/CyclomaticComplexity
