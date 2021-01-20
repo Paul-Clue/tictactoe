@@ -37,3 +37,16 @@
 - GitHub: [@ixboy](https://github.com/ixboy)
 - Twitter: [@ismaelixboy](https://twitter.com/ismaelixboy)
 - LinkedIn: [ismael-antonio](https://www.linkedin.com/in/ismael-antonio-0b7712114/)
+
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## 📝 License
+
+This project is [MIT](https://opensource.org/licenses/MIT) licensed.
