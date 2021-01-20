@@ -37,14 +37,11 @@ puts "\n"
 puts "#{player_one.name} your mark is -- #{player_one.mark}."
 puts "#{player_two.name} your mark is -- #{player_two.mark}."
 puts "\n"
-puts "\n"
 game = Board.new
 game.update_array
 puts "\n"
 puts "#{player_one.name} your turn. Enter the number of where you would like to place your mark. "
 mark = gets.chomp
-puts "\n"
-
 game_on = true
 moves = 0
 x_wins = false
@@ -59,13 +56,11 @@ while game_on
     if mark.to_i > 9
       puts "#{player_one.name} you have chosen an Invalid input, Please sellect a valid number from 1 to 9."
     else
-      puts 'You can only select an integer, and that integer must be on the game board.'
+      puts "#{player_one.name} You can only select an integer, and that integer must be on the game board."
     end
 
     break unless o_wins == false
 
-    # puts 'Invalid input.You can only select an integer, and that integer must be on the game board.' if (char_array.include? mark) == false
-    # binding.pry
     puts "\n"
     puts "#{player_one.name} Please enter the number of where you would like to place your mark. "
     mark = gets.chomp
@@ -76,10 +71,9 @@ while game_on
   game.updated_board(mark, player_one.mark)
 
   puts "\n"
-  puts "\n"
   moves += 1
   game.update_array
-
+  puts "\n"
   game_on = game.score_test_x
   x_wins = !game_on
 
@@ -90,22 +84,20 @@ while game_on
     if mark.to_i > 9
       puts "#{player_two.name} you have chosen an Invalid input, Please sellect a valid number from 1 to 9."
     else
-      puts 'You can only select an integer, and that integer must be on the game board.'
+      puts "#{player_two.name} You can only select an integer, and that integer must be on the game board."
     end
 
     break unless x_wins == false
 
-    # puts 'You can only select an integer, and that integer must be on the game board.'
     puts "\n"
     puts "#{player_two.name} please enter the number of where you would like to place your mark. "
     mark = gets.chomp
     game.update_array
+    puts "\n"
     next unless char_array.include? mark
   end
   char_array[mark.to_i - 1] = player_two.mark
   game.updated_board(mark, player_two.mark)
-
-  puts "\n"
   puts "\n"
   moves += 1
   game.update_array
@@ -123,3 +115,4 @@ else
   puts "It's a tie?!"
 end
 game.update_array
+puts "\n"
