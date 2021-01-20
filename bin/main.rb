@@ -56,13 +56,8 @@ while game_on
 
   skip = true
   until char_array.include? mark
-    # if mark.to_i > 9 || mark.to_i < 1
-    #   puts "#{player_two.name} you have chosen an Invalid input, Please sellect a valid number from 1 to 9."
-    # else
-    #   puts "#{player_two.name} That space has been filled. You must choose another space on the game board."
-    # end
 
-    if (mark.to_i > 9 || mark.to_i < 1)
+    if mark.to_i > 9 || mark.to_i < 1
       puts "#{player_one.name} you have chosen an Invalid input, Please sellect a valid number from 1 to 9."
       skip = true
     end
@@ -95,18 +90,10 @@ while game_on
   game_on = game.score_test_x
   x_wins = !game_on
 
-  # puts "#{player_two.name} your turn. Enter the number of where you would like to place your mark. "
-  # mark = gets.chomp unless x_wins == true || moves == 9
-
   skip = true
   until char_array.include? mark
-    # if mark.to_i > 9 || mark.to_i < 1
-    #   puts "#{player_two.name} you have chosen an Invalid input, Please sellect a valid number from 1 to 9."
-    # else
-    #   puts "#{player_two.name} That space has been filled. You must choose another space on the game board."
-    # end
 
-    if (mark.to_i > 9 || mark.to_i < 1)
+    if mark.to_i > 9 || mark.to_i < 1
       puts "#{player_two.name} you have chosen an Invalid input, Please sellect a valid number from 1 to 9."
       skip = true
     end
