@@ -30,22 +30,6 @@ class Board < Player
     end
   end
 
-  def p_one_loop(mak, o_w, p_one)
-    mark = mak
-    o_wins = o_w
-    player_one = p_one
-    until $char_array.include? mark
-      break unless o_wins == false
-
-      puts 'You can only select an integer, and that integer must be on the game board.'
-      puts "\n"
-      puts "#{player_one} your turn. Enter the number of where you would like to place your mark. "
-      mark = gets.chomp
-      next unless $char_array.include? mark
-    end
-    mark
-  end
-
   def update_array
     $lines.each do |line|
       line.each do |c|
@@ -68,9 +52,6 @@ class Board < Player
       break
     end
 
-    puts '------------------------'
-    puts '------------------------'
-    # Columns
     score = 0
     $lines.each do |v|
       break if x_wins
@@ -145,10 +126,7 @@ class Board < Player
       o_wins = true
       break
     end
-
-    puts '------------------------'
-    puts '------------------------'
-    # Columns
+    
     score = 0
     $lines.each do |v|
       break if o_wins
