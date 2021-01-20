@@ -1,5 +1,5 @@
 # rubocop:disable Metrics/CyclomaticComplexity
-
+# rubocop:disable Metrics/PerceivedComplexity
 
 class Player
   attr_accessor :mark
@@ -10,62 +10,60 @@ class Player
     @mark = ''
     @move = ''
     @name = ''
-  end  
-end  
+  end
+end
 
-
-
+$lines = [%w[1 2 3], %w[4 5 6], %w[7 8 9]]
+$char_array = %w[1 2 3 4 5 6 7 8 9]
 
 class Board < Player
-  @@lines = [%w[1 2 3], %w[4 5 6], %w[7 8 9]]
-  @@char_array = %w[1 2 3 4 5 6 7 8 9]
-  @@invalid_num = [1, 2, 3]
+ 
 
-  def updated_board(mk, pmk)
+  def updated_board(mak, pmk)
     char_index = 0
-    mark = mk
+    mark = mak
     player_mark = pmk
-    @@lines.each_with_index do |v, s|
+    $lines.each_with_index do |v, s|
       v.each_with_index do |i, t|
         if i == mark
-          @@lines[s][t] = player_mark
-          @@char_array[char_index] = player_mark
+          $lines[s][t] = player_mark
+          $char_array[char_index] = player_mark
         end
         char_index += 1
       end
     end
   end
 
-  def p_one_loop(mk, o_w, p_one)
-    mark = mk
+  def p_one_loop(mak, o_w, p_one)
+    mark = mak
     o_wins = o_w
     player_one = p_one
-    until @@char_array.include? mark
+    until $char_array.include? mark
       break unless o_wins == false
-  
+
       puts 'You can only select an integer, and that integer must be on the game board.'
       puts "\n"
       puts "#{player_one} your turn. Enter the number of where you would like to place your mark. "
       mark = gets.chomp
-      next unless @@char_array.include? mark
+      next unless $char_array.include? mark
     end
     mark
   end
 
   def update_array
-    @@lines.each do |line|
+    $lines.each do |line|
       line.each do |c|
-      print "|_#{c}_| "
+        print "|_#{c}_| "
       end
-      puts ""
+      puts ''
     end
   end
-  
+
   def score_test_x
     game_on = true
     x_wins = false
     score = 0
-    @@lines.each do |v|
+    $lines.each do |v|
       score += 1 if v == %w[x x x]
       next unless score == 1
 
@@ -78,7 +76,7 @@ class Board < Player
     puts '------------------------'
     # Columns
     score = 0
-    @@lines.each do |v|
+    $lines.each do |v|
       break if x_wins
 
       1.step(1) do |s|
@@ -92,7 +90,7 @@ class Board < Player
     end
 
     score = 0
-    @@lines.each do |v|
+    $lines.each do |v|
       break if x_wins
 
       1.step(1) do |s|
@@ -106,7 +104,7 @@ class Board < Player
     end
 
     score = 0
-    @@lines.each do |v|
+    $lines.each do |v|
       break if x_wins
 
       1.step(1) do |s|
@@ -121,7 +119,7 @@ class Board < Player
 
     score = 0
     index = 0
-    @@lines.each do |v|
+    $lines.each do |v|
       break if x_wins
 
       1.step(1) do |s|
@@ -143,7 +141,7 @@ class Board < Player
     o_wins = false
     score = 0
 
-    @@lines.each do |v|
+    $lines.each do |v|
       score += 1 if v == %w[o o o]
       next unless score == 1
 
@@ -156,7 +154,7 @@ class Board < Player
     puts '------------------------'
     # Columns
     score = 0
-    @@lines.each do |v|
+    $lines.each do |v|
       break if o_wins
 
       1.step(1) do |s|
@@ -170,7 +168,7 @@ class Board < Player
     end
 
     score = 0
-   @@lines.each do |v|
+    $lines.each do |v|
       break if o_wins
 
       1.step(1) do |s|
@@ -184,7 +182,7 @@ class Board < Player
     end
 
     score = 0
-    @@lines.each do |v|
+    $lines.each do |v|
       break if o_wins
 
       1.step(1) do |s|
@@ -199,7 +197,7 @@ class Board < Player
 
     score = 0
     index = 0
-    @@lines.each do |v|
+    $lines.each do |v|
       break if o_wins
 
       1.step(1) do |s|
@@ -214,19 +212,8 @@ class Board < Player
       break
     end
     game_on
-  end 
-
-
-
-
-  def valid(num)
-    if @@invalid_num.any?(num)
-      true
-    else
-      @@invalid_num << num
-      @@invalid_num
-    end
   end
 end
 
 # rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/PerceivedComplexity
