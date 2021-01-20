@@ -53,8 +53,16 @@ while game_on
 
   break unless (moves >= 9) == false && o_wins == false
 
-  mark = game.p_one_loop(mark, o_wins, player_one.name)
-  p 'run check!'
+  until char_array.include? mark
+    break unless o_wins == false
+    
+    puts 'You can only select an integer, and that integer must be on the game board.'
+    puts "\n"
+    puts "#{player_one.name} your turn. Enter the number of where you would like to place your mark. "
+    mark = gets.chomp
+    next unless char_array.include? mark
+  end
+  char_array[mark.to_i - 1] = player_one.mark
   game.updated_board(mark, player_one.mark)
 
   puts "\n"
@@ -62,22 +70,22 @@ while game_on
   moves += 1
   game.update_array
 
-  # Check The Score
   game_on = game.score_test_x
   x_wins = !game_on
 
   puts "#{player_two.name} your turn. Enter the number of where you would like to place your mark. "
   mark = gets.chomp unless x_wins == true || moves == 9
+
   until char_array.include? mark
     break unless x_wins == false
-
+    puts "inside moves: #{moves}"
     puts 'You can only select an integer, and that integer must be on the game board.'
     puts "\n"
     puts "#{player_two.name} your turn. Enter the number of where you would like to place your mark. "
     mark = gets.chomp
     next unless char_array.include? mark
   end
-
+  char_array[mark.to_i - 1] = player_two.mark
   game.updated_board(mark, player_two.mark)
 
   puts "\n"
@@ -85,7 +93,6 @@ while game_on
   moves += 1
   game.update_array
 
-  # Check The Score
   game_on = game.score_test_o
   o_wins = !game_on
 end
