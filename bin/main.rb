@@ -47,16 +47,17 @@ moves = 0
 x_wins = false
 o_wins = false
 while game_on
+  puts "This is move: #{moves}"
   break unless (moves >= 9) == false && x_wins == false
 
   break unless (moves >= 9) == false && o_wins == false
 
   until char_array.include? mark
 
-    if mark.to_i > 9
+    if mark.to_i > 9 || mark.to_i < 1
       puts "#{player_one.name} you have chosen an Invalid input, Please sellect a valid number from 1 to 9."
     else
-      puts "#{player_one.name} You can only select an integer, and that integer must be on the game board."
+      puts "#{player_one.name} That space has been filled. You must choose another space on the game board."
     end
 
     break unless o_wins == false
@@ -72,6 +73,7 @@ while game_on
 
   puts "\n"
   moves += 1
+  break if moves >= 9
   game.update_array
   puts "\n"
   game_on = game.score_test_x
@@ -81,10 +83,10 @@ while game_on
   mark = gets.chomp unless x_wins == true || moves == 9
 
   until char_array.include? mark
-    if mark.to_i > 9
+    if mark.to_i > 9 || mark.to_i < 1
       puts "#{player_two.name} you have chosen an Invalid input, Please sellect a valid number from 1 to 9."
     else
-      puts "#{player_two.name} You can only select an integer, and that integer must be on the game board."
+      puts "#{player_two.name} That space has been filled. You must choose another space on the game board."
     end
 
     break unless x_wins == false
