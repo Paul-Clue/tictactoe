@@ -46,26 +46,41 @@ game_on = true
 moves = 0
 x_wins = false
 o_wins = false
+skip = false
+skip2 = false
 while game_on
   puts "This is move: #{moves}"
   break unless (moves >= 9) == false && x_wins == false
 
   break unless (moves >= 9) == false && o_wins == false
 
+  skip = true
   until char_array.include? mark
+    # if mark.to_i > 9 || mark.to_i < 1
+    #   puts "#{player_two.name} you have chosen an Invalid input, Please sellect a valid number from 1 to 9."
+    # else
+    #   puts "#{player_two.name} That space has been filled. You must choose another space on the game board."
+    # end
 
-    if mark.to_i > 9 || mark.to_i < 1
+    if (mark.to_i > 9 || mark.to_i < 1)
       puts "#{player_one.name} you have chosen an Invalid input, Please sellect a valid number from 1 to 9."
+      skip = true
+    end
+
+    if skip
+      skip2 = skip2
     else
       puts "#{player_one.name} That space has been filled. You must choose another space on the game board."
     end
+    skip = false
 
-    break unless o_wins == false
+    break unless x_wins == false
 
     puts "\n"
-    puts "#{player_one.name} Please enter the number of where you would like to place your mark. "
+    puts "#{player_one.name} please enter the number of where you would like to place your mark. "
     mark = gets.chomp
     game.update_array
+    puts "\n"
     next unless char_array.include? mark
   end
   char_array[mark.to_i - 1] = player_one.mark
@@ -80,15 +95,28 @@ while game_on
   game_on = game.score_test_x
   x_wins = !game_on
 
-  puts "#{player_two.name} your turn. Enter the number of where you would like to place your mark. "
-  mark = gets.chomp unless x_wins == true || moves == 9
+  # puts "#{player_two.name} your turn. Enter the number of where you would like to place your mark. "
+  # mark = gets.chomp unless x_wins == true || moves == 9
 
+  skip = true
   until char_array.include? mark
-    if mark.to_i > 9 || mark.to_i < 1
+    # if mark.to_i > 9 || mark.to_i < 1
+    #   puts "#{player_two.name} you have chosen an Invalid input, Please sellect a valid number from 1 to 9."
+    # else
+    #   puts "#{player_two.name} That space has been filled. You must choose another space on the game board."
+    # end
+
+    if (mark.to_i > 9 || mark.to_i < 1)
       puts "#{player_two.name} you have chosen an Invalid input, Please sellect a valid number from 1 to 9."
+      skip = true
+    end
+
+    if skip
+      skip2 = skip2
     else
       puts "#{player_two.name} That space has been filled. You must choose another space on the game board."
     end
+    skip = false
 
     break unless x_wins == false
 
