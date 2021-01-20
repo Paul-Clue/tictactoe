@@ -2,6 +2,9 @@
  This is an implementation of a Tic Tac Toe GAME  for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a diagonal, horizontal, or vertical row is the winner. It is a solved game with a forced draw assuming best play from both players.
    this game is build in Ruby programming language.
 
+## Screenshot
+![](assets/screenshot.png)
+
 # This code includes the utilization of 
 - Object-oriented programming (OOP)
 
@@ -18,7 +21,7 @@
 - Enter ./bin/main.rb to start the game.
 
 ## Instructions
-- Enter player's name as prompt in the terminal
+- Enter player's name as prompt in the terminal.
 - Enter a number from 1 upto 9 to make a move(choose a spot).
 - You win when 3 of your symbols align vertically, horizontally or diagonally.
 - After nine moves it's a draw if there's no winner.
