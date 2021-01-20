@@ -55,8 +55,9 @@ while game_on
 
   until char_array.include? mark
     break unless o_wins == false
-
-    puts 'You can only select an integer, and that integer must be on the game board.'
+    # if (char_array.include? mark) == false
+    #   puts 'Invalid input.You can only select an integer, and that integer must be on the game board.'
+    # end
     puts "\n"
     puts "#{player_one.name} your turn. Enter the number of where you would like to place your mark. "
     mark = gets.chomp
