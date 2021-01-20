@@ -126,7 +126,7 @@ class Board < Player
       o_wins = true
       break
     end
-    
+
     score = 0
     $lines.each do |v|
       break if o_wins
