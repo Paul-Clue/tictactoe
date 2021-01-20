@@ -17,8 +17,6 @@ $lines = [%w[1 2 3], %w[4 5 6], %w[7 8 9]]
 $char_array = %w[1 2 3 4 5 6 7 8 9]
 
 class Board < Player
- 
-
   def updated_board(mak, pmk)
     char_index = 0
     mark = mak

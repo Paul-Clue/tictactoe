@@ -3,6 +3,11 @@ AllCops:
     - "Guardfile"
     - "Rakefile"
 
+GlobalVars:
+  Enabled:
+    - $redis
+
+
   DisplayCopNames: true
 
 Layout/LineLength:
