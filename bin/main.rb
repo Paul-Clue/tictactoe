@@ -60,6 +60,7 @@ while game_on
     puts "\n"
     puts "#{player_one.name} your turn. Enter the number of where you would like to place your mark. "
     mark = gets.chomp
+    game.update_array
     next unless char_array.include? mark
   end
   char_array[mark.to_i - 1] = player_one.mark
@@ -79,11 +80,11 @@ while game_on
   until char_array.include? mark
     break unless x_wins == false
 
-    puts "inside moves: #{moves}"
     puts 'You can only select an integer, and that integer must be on the game board.'
     puts "\n"
     puts "#{player_two.name} your turn. Enter the number of where you would like to place your mark. "
     mark = gets.chomp
+    game.update_array
     next unless char_array.include? mark
   end
   char_array[mark.to_i - 1] = player_two.mark
