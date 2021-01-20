@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/interface'
+require 'pry'
 
 char_array = %w[1 2 3 4 5 6 7 8 9]
 player_one = Player.new
@@ -54,12 +55,19 @@ while game_on
   break unless (moves >= 9) == false && o_wins == false
 
   until char_array.include? mark
+
+    if mark.to_i > 9
+      puts "#{player_one.name} you have chosen an Invalid input, Please sellect a valid number from 1 to 9."
+    else
+      puts 'You can only select an integer, and that integer must be on the game board.'
+    end
+
     break unless o_wins == false
-    # if (char_array.include? mark) == false
-    #   puts 'Invalid input.You can only select an integer, and that integer must be on the game board.'
-    # end
+
+    # puts 'Invalid input.You can only select an integer, and that integer must be on the game board.' if (char_array.include? mark) == false
+    # binding.pry
     puts "\n"
-    puts "#{player_one.name} your turn. Enter the number of where you would like to place your mark. "
+    puts "#{player_one.name} Please enter the number of where you would like to place your mark. "
     mark = gets.chomp
     game.update_array
     next unless char_array.include? mark
@@ -79,11 +87,17 @@ while game_on
   mark = gets.chomp unless x_wins == true || moves == 9
 
   until char_array.include? mark
+    if mark.to_i > 9
+      puts "#{player_two.name} you have chosen an Invalid input, Please sellect a valid number from 1 to 9."
+    else
+      puts 'You can only select an integer, and that integer must be on the game board.'
+    end
+
     break unless x_wins == false
 
-    puts 'You can only select an integer, and that integer must be on the game board.'
+    # puts 'You can only select an integer, and that integer must be on the game board.'
     puts "\n"
-    puts "#{player_two.name} your turn. Enter the number of where you would like to place your mark. "
+    puts "#{player_two.name} please enter the number of where you would like to place your mark. "
     mark = gets.chomp
     game.update_array
     next unless char_array.include? mark
