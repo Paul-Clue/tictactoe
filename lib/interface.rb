@@ -110,6 +110,23 @@ class Board < Player
       x_wins = true
       break
     end
+
+    score = 0
+    index = 2
+    $lines.each do |v|
+      break if x_wins
+
+      1.step(1) do |s|
+        s += index
+        score += 1 if v[s - 1] == 'x'
+      end
+      index -= 1
+      next unless score == 3
+
+      game_on = false
+      x_wins = true
+      break
+    end
     game_on
   end
 
@@ -179,6 +196,23 @@ class Board < Player
         score += 1 if v[s - 1] == 'o'
       end
       index += 1
+      next unless score == 3
+
+      game_on = false
+      o_wins = true
+      break
+    end
+
+    score = 0
+    index = 2
+    $lines.each do |v|
+      break if o_wins
+
+      1.step(1) do |s|
+        s += index
+        score += 1 if v[s - 1] == 'o'
+      end
+      index -= 1
       next unless score == 3
 
       game_on = false
