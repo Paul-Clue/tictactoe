@@ -74,6 +74,7 @@ while game_on
   puts "\n"
   moves += 1
   break if moves >= 9
+
   game.update_array
   puts "\n"
   game_on = game.score_test_x
