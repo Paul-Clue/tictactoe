@@ -44,7 +44,7 @@ class Board < Player
     x_wins = false
     score = 0
     $lines.each do |v|
-      score += 1 if v == %w[x x x] 
+      score += 1 if v == %w[x x x]
       next unless score == 1
 
       game_on = false
