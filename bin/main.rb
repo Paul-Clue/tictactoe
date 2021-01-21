@@ -7,6 +7,9 @@ char_array = %w[1 2 3 4 5 6 7 8 9]
 player_one = Player.new
 player_two = Player.new
 
+player_one.mark = 'x'
+player_two.mark = 'o'
+
 puts "Welcome to Tic-Tac-Toe.\nPlayer one please enter Your name."
 player_one.name = gets.chomp
 
@@ -18,20 +21,6 @@ puts "In order to win the game,
 a player must place three of their marks in a
 horizontal, vertical, or diagonal row."
 puts "\n"
-puts "#{player_one.name} please choose your mark by entering \"x\" or \"o\" below.\n"
-player_one.mark = gets.chomp
-
-while player_one.mark != 'x' && player_one.mark != 'o'
-  puts 'You can only select an "x" or an "o" for your mark.'
-  puts "\n"
-  puts "#{player_one.name} please choose your mark by entering \"x\" or \"o\" below.\n"
-  player_one.mark = gets.chomp
-end
-player_two.mark = if player_one.mark == 'x'
-                    'o'
-                  else
-                    'x'
-                  end
 
 puts "\n"
 puts "#{player_one.name} your mark is -- #{player_one.mark}."
@@ -49,7 +38,6 @@ o_wins = false
 skip = false
 skip2 = false
 while game_on
-  puts "This is move: #{moves}"
   break unless (moves >= 9) == false && x_wins == false
 
   break unless (moves >= 9) == false && o_wins == false
